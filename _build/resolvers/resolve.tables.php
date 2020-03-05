@@ -13,7 +13,10 @@ if ($transport->xpdo) {
             $modx->addPackage('geo', $modelPath);
 
             $manager = $modx->getManager();
-            $objects = array();
+            $objects = array(
+            	'GeoRegion',
+				'GeoCity'
+			);
             $schemaFile = MODX_CORE_PATH . 'components/geo/model/schema/geo.mysql.schema.xml';
             if (is_file($schemaFile)) {
                 $schema = new SimpleXMLElement($schemaFile, 0, true);

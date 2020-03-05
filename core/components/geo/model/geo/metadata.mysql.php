@@ -1,8 +1,9 @@
 <?php
 
-$xpdo_meta_map = array(
-    'xPDOSimpleObject' =>
-        array(
-            0 => 'GeoItem',
-        ),
+$xpdo_meta_map = array (
+  'xPDOSimpleObject' => 
+  array (
+    0 => 'GeoRegion',
+    1 => 'GeoCity',
+  ),
 );

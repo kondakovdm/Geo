@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model package="geo" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="geo"
+<model package="geo" baseClass="xPDOObject" platform="mysql" defaultEngine="InnoDB" phpdoc-package="geo"
        version="1.1">
 
-    <object class="GeoItem" table="geo_items" extends="xPDOSimpleObject">
-        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
-        <field key="description" dbtype="text" phptype="text" null="true" default=""/>
-        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+    <object class="GeoRegion" table="geo_regions" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="price" dbtype="decimal" precision="12,2" phptype="float" null="true" default="0"/>
 
-        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
-            <column key="name" length="" collation="A" null="false"/>
-        </index>
-        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
-            <column key="active" length="" collation="A" null="false"/>
-        </index>
+        <composite alias="Cities" class="GeoCity" local="id" foreign="region_id" cardinality="many" owner="local" />
+    </object>
+
+    <object class="GeoCity" table="geo_cities" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="region_id" dbtype="int" precision="10" phptype="integer" null="true" default="0" attributes="unsigned"/>
+
+        <aggregate alias="Region" class="GeoRegion" local="region_id" foreign="id" cardinality="one" owner="foreign" />
     </object>
 
 </model>
