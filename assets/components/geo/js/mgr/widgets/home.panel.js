@@ -20,13 +20,13 @@ Geo.panel.Home = function (config) {
             border: true,
             hideMode: 'offsets',
             items: [{
-                title: _('geo_items'),
+                title: _('geo_subjects'),
                 layout: 'anchor',
                 items: [{
                     html: _('geo_intro_msg'),
                     cls: 'panel-desc',
                 }, {
-                    xtype: 'geo-grid-items',
+                    xtype: 'geo-grid-subjects',
                     cls: 'main-wrapper',
                 }]
             }]
