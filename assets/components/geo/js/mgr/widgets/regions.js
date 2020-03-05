@@ -1,7 +1,7 @@
-Geo.grid.Subjects = function (config) {
+Geo.grid.Regions = function (config) {
     config = config || {};
     if (!config.id) {
-        config.id = 'geo-grid-subjects';
+        config.id = 'geo-grid-regions';
     }
     Ext.applyIf(config, {
         url: Geo.config.connector_url,
@@ -10,7 +10,7 @@ Geo.grid.Subjects = function (config) {
         tbar: this.getTopBar(config),
         sm: new Ext.grid.CheckboxSelectionModel(),
         baseParams: {
-            action: 'mgr/subject/getlist'
+            action: 'mgr/region/getlist'
         },
         listeners: {
             rowDblClick: function (grid, rowIndex, e) {
@@ -34,7 +34,7 @@ Geo.grid.Subjects = function (config) {
         remoteSort: true,
         autoHeight: true,
     });
-    Geo.grid.Subjects.superclass.constructor.call(this, config);
+    Geo.grid.Regions.superclass.constructor.call(this, config);
 
     // Clear selection on grid refresh
     this.store.on('load', function () {
@@ -43,7 +43,7 @@ Geo.grid.Subjects = function (config) {
         }
     }, this);
 };
-Ext.extend(Geo.grid.Subjects, MODx.grid.Grid, {
+Ext.extend(Geo.grid.Regions, MODx.grid.Grid, {
     windows: {},
 
     getMenu: function (grid, rowIndex) {
@@ -57,7 +57,7 @@ Ext.extend(Geo.grid.Subjects, MODx.grid.Grid, {
 
     createItem: function (btn, e) {
         var w = MODx.load({
-            xtype: 'geo-subject-window-create',
+            xtype: 'geo-region-window-create',
             id: Ext.id(),
             listeners: {
                 success: {
@@ -84,14 +84,14 @@ Ext.extend(Geo.grid.Subjects, MODx.grid.Grid, {
         MODx.Ajax.request({
             url: this.config.url,
             params: {
-                action: 'mgr/subject/get',
+                action: 'mgr/region/get',
                 id: id
             },
             listeners: {
                 success: {
                     fn: function (r) {
                         var w = MODx.load({
-                            xtype: 'geo-subject-window-update',
+                            xtype: 'geo-region-window-update',
                             id: Ext.id(),
                             record: r,
                             listeners: {
@@ -118,14 +118,14 @@ Ext.extend(Geo.grid.Subjects, MODx.grid.Grid, {
         }
         MODx.msg.confirm({
             title: ids.length > 1
-                ? _('geo_subjects_remove')
-                : _('geo_subject_remove'),
+                ? _('geo_regions_remove')
+                : _('geo_region_remove'),
             text: ids.length > 1
-                ? _('geo_subjects_remove_confirm')
-                : _('geo_subject_remove_confirm'),
+                ? _('geo_regions_remove_confirm')
+                : _('geo_region_remove_confirm'),
             url: this.config.url,
             params: {
-                action: 'mgr/subject/remove',
+                action: 'mgr/region/remove',
                 ids: Ext.util.JSON.encode(ids),
             },
             listeners: {
@@ -147,7 +147,7 @@ Ext.extend(Geo.grid.Subjects, MODx.grid.Grid, {
         MODx.Ajax.request({
             url: this.config.url,
             params: {
-                action: 'mgr/subject/disable',
+                action: 'mgr/region/disable',
                 ids: Ext.util.JSON.encode(ids),
             },
             listeners: {
@@ -168,7 +168,7 @@ Ext.extend(Geo.grid.Subjects, MODx.grid.Grid, {
         MODx.Ajax.request({
             url: this.config.url,
             params: {
-                action: 'mgr/subject/enable',
+                action: 'mgr/region/enable',
                 ids: Ext.util.JSON.encode(ids),
             },
             listeners: {
@@ -187,22 +187,22 @@ Ext.extend(Geo.grid.Subjects, MODx.grid.Grid, {
 
     getColumns: function () {
         return [{
-            header: _('geo_subject_id'),
+            header: _('geo_region_id'),
             dataIndex: 'id',
             sortable: true,
             width: 70
         }, {
-            header: _('geo_subject_name'),
+            header: _('geo_region_name'),
             dataIndex: 'name',
             sortable: true,
             width: 200,
         }, {
-            header: _('geo_subject_description'),
+            header: _('geo_region_description'),
             dataIndex: 'description',
             sortable: false,
             width: 250,
         }, {
-            header: _('geo_subject_active'),
+            header: _('geo_region_active'),
             dataIndex: 'active',
             renderer: Geo.utils.renderBoolean,
             sortable: true,
@@ -219,7 +219,7 @@ Ext.extend(Geo.grid.Subjects, MODx.grid.Grid, {
 
     getTopBar: function () {
         return [{
-            text: '<i class="icon icon-plus"></i>&nbsp;' + _('geo_subject_create'),
+            text: '<i class="icon icon-plus"></i>&nbsp;' + _('geo_region_create'),
             handler: this.createItem,
             scope: this
         }, '->', {
@@ -284,4 +284,4 @@ Ext.extend(Geo.grid.Subjects, MODx.grid.Grid, {
         this.getBottomToolbar().changePage(1);
     },
 });
-Ext.reg('geo-grid-subjects', Geo.grid.Subjects);
+Ext.reg('geo-grid-regions', Geo.grid.Regions);
