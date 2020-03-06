@@ -1,9 +1,9 @@
 <?php
 
-class GeoItemEnableProcessor extends modObjectProcessor
+class GeoRegionEnableProcessor extends modObjectProcessor
 {
-    public $objectType = 'GeoItem';
-    public $classKey = 'GeoItem';
+    public $objectType = 'GeoRegion';
+    public $classKey = 'GeoRegion';
     public $languageTopics = array('geo');
     //public $permission = 'save';
 
@@ -19,13 +19,13 @@ class GeoItemEnableProcessor extends modObjectProcessor
 
         $ids = $this->modx->fromJSON($this->getProperty('ids'));
         if (empty($ids)) {
-            return $this->failure($this->modx->lexicon('geo_item_err_ns'));
+            return $this->failure($this->modx->lexicon('geo_region_err_ns'));
         }
 
         foreach ($ids as $id) {
-            /** @var GeoItem $object */
+            /** @var GeoRegion $object */
             if (!$object = $this->modx->getObject($this->classKey, $id)) {
-                return $this->failure($this->modx->lexicon('geo_item_err_nf'));
+                return $this->failure($this->modx->lexicon('geo_region_err_nf'));
             }
 
             $object->set('active', true);
@@ -37,4 +37,4 @@ class GeoItemEnableProcessor extends modObjectProcessor
 
 }
 
-return 'GeoItemEnableProcessor';
+return 'GeoRegionEnableProcessor';

@@ -1,9 +1,9 @@
 <?php
 
-class GeoRegionGetListProcessor extends modObjectGetListProcessor
+class GeoCityGetListProcessor extends modObjectGetListProcessor
 {
-    public $objectType = 'GeoRegion';
-    public $classKey = 'GeoRegion';
+    public $objectType = 'GeoCity';
+    public $classKey = 'GeoCity';
     public $defaultSortField = 'name';
     public $defaultSortDirection = 'ASC';
     //public $permission = 'list';
@@ -32,12 +32,10 @@ class GeoRegionGetListProcessor extends modObjectGetListProcessor
      */
     public function prepareQueryBeforeCount(xPDOQuery $c)
     {
-		// Добавляем в выборку предметы
-//		$c->leftJoin('GeoRegion', 'GeoRegion', '`GeoRegion`.`id` = `'.$this->classKey.'`.`region_id`');
-//		$c->select($this->modx->getSelectColumns($this->classKey, $this->classKey));
-//		$c->select('`Reg`.`name` as `region_name`');
-//		$c->groupby($this->classKey . '.region_id');
-		// конец
+		$c->leftJoin('GeoRegion', 'GeoRegion', '`GeoRegion`.`id` = `'.$this->classKey.'`.`region_id`');
+		$c->select($this->modx->getSelectColumns($this->classKey, $this->classKey));
+		$c->select('`GeoRegion`.`name` as `region_name`');
+		$c->groupby($this->classKey . '.id');
 
         $query = trim($this->getProperty('query'));
         if ($query) {
@@ -110,4 +108,4 @@ class GeoRegionGetListProcessor extends modObjectGetListProcessor
 
 }
 
-return 'GeoRegionGetListProcessor';
+return 'GeoCityGetListProcessor';

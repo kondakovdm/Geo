@@ -1,9 +1,9 @@
 <?php
 
-class GeoRegionGetProcessor extends modObjectGetProcessor
+class GeoCityGetProcessor extends modObjectGetProcessor
 {
-    public $objectType = 'GeoRegion';
-    public $classKey = 'GeoRegion';
+    public $objectType = 'GeoCity';
+    public $classKey = 'GeoCity';
     public $languageTopics = array('geo:default');
     //public $permission = 'view';
 
@@ -25,4 +25,4 @@ class GeoRegionGetProcessor extends modObjectGetProcessor
 
 }
 
-return 'GeoRegionGetProcessor';
+return 'GeoCityGetProcessor';

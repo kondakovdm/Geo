@@ -1,11 +1,11 @@
 <?php
 
-class GeoRegionDisableProcessor extends modObjectProcessor
+class GeoCityRemoveProcessor extends modObjectProcessor
 {
-    public $objectType = 'GeoRegion';
-    public $classKey = 'GeoRegion';
+    public $objectType = 'GeoCity';
+    public $classKey = 'GeoCity';
     public $languageTopics = array('geo');
-    //public $permission = 'save';
+    //public $permission = 'remove';
 
 
     /**
@@ -19,17 +19,16 @@ class GeoRegionDisableProcessor extends modObjectProcessor
 
         $ids = $this->modx->fromJSON($this->getProperty('ids'));
         if (empty($ids)) {
-            return $this->failure($this->modx->lexicon('geo_region_err_ns'));
+            return $this->failure($this->modx->lexicon('geo_city_err_ns'));
         }
 
         foreach ($ids as $id) {
-            /** @var GeoRegion $object */
+            /** @var GeoCity $object */
             if (!$object = $this->modx->getObject($this->classKey, $id)) {
-                return $this->failure($this->modx->lexicon('geo_region_err_nf'));
+                return $this->failure($this->modx->lexicon('geo_city_err_nf'));
             }
 
-            $object->set('active', false);
-            $object->save();
+            $object->remove();
         }
 
         return $this->success();
@@ -37,4 +36,4 @@ class GeoRegionDisableProcessor extends modObjectProcessor
 
 }
 
-return 'GeoRegionDisableProcessor';
+return 'GeoCityRemoveProcessor';

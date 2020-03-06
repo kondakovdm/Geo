@@ -1,9 +1,9 @@
 <?php
 
-class GeoRegionCreateProcessor extends modObjectCreateProcessor
+class GeoCityCreateProcessor extends modObjectCreateProcessor
 {
-    public $objectType = 'GeoRegion';
-    public $classKey = 'GeoRegion';
+    public $objectType = 'GeoCity';
+    public $classKey = 'GeoCity';
     public $languageTopics = array('geo');
     //public $permission = 'create';
 
@@ -15,9 +15,9 @@ class GeoRegionCreateProcessor extends modObjectCreateProcessor
     {
         $name = trim($this->getProperty('name'));
         if (empty($name)) {
-            $this->modx->error->addField('name', $this->modx->lexicon('geo_region_err_name'));
+            $this->modx->error->addField('name', $this->modx->lexicon('geo_city_err_name'));
         } elseif ($this->modx->getCount($this->classKey, array('name' => $name))) {
-            $this->modx->error->addField('name', $this->modx->lexicon('geo_region_err_ae'));
+            $this->modx->error->addField('name', $this->modx->lexicon('geo_city_err_ae'));
         }
 
         return parent::beforeSet();
@@ -25,4 +25,4 @@ class GeoRegionCreateProcessor extends modObjectCreateProcessor
 
 }
 
-return 'GeoRegionCreateProcessor';
+return 'GeoCityCreateProcessor';

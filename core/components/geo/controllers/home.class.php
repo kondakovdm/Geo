@@ -59,7 +59,8 @@ class GeoHomeManagerController extends modExtraManagerController
         $this->addJavascript($this->Geo->config['jsUrl'] . 'mgr/geo.js');
         $this->addJavascript($this->Geo->config['jsUrl'] . 'mgr/misc/utils.js');
         $this->addJavascript($this->Geo->config['jsUrl'] . 'mgr/misc/combo.js');
-        $this->addJavascript($this->Geo->config['jsUrl'] . 'mgr/widgets/regions.js');
+		$this->addJavascript($this->Geo->config['jsUrl'] . 'mgr/widgets/regions.js');
+		$this->addJavascript($this->Geo->config['jsUrl'] . 'mgr/widgets/cities.js');
         $this->addJavascript($this->Geo->config['jsUrl'] . 'mgr/widgets/items.windows.js');
         $this->addJavascript($this->Geo->config['jsUrl'] . 'mgr/widgets/home.panel.js');
         $this->addJavascript($this->Geo->config['jsUrl'] . 'mgr/sections/home.js');

@@ -29,6 +29,16 @@ Geo.panel.Home = function (config) {
                     xtype: 'geo-grid-regions',
                     cls: 'main-wrapper',
                 }]
+            },{
+                title: _('geo_cities'),
+                layout: 'anchor',
+                items: [{
+                    html: _('geo_intro_msg'),
+                    cls: 'panel-desc',
+                }, {
+                    xtype: 'geo-grid-cities',
+                    cls: 'main-wrapper',
+                }]
             }]
         }]
     });

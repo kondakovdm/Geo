@@ -1,9 +1,9 @@
 <?php
 
-class GeoRegionUpdateProcessor extends modObjectUpdateProcessor
+class GeoCityUpdateProcessor extends modObjectUpdateProcessor
 {
-    public $objectType = 'GeoRegion';
-    public $classKey = 'GeoRegion';
+    public $objectType = 'GeoCity';
+    public $classKey = 'GeoCity';
     public $languageTopics = array('geo');
     //public $permission = 'save';
 
@@ -32,17 +32,17 @@ class GeoRegionUpdateProcessor extends modObjectUpdateProcessor
         $id = (int)$this->getProperty('id');
         $name = trim($this->getProperty('name'));
         if (empty($id)) {
-            return $this->modx->lexicon('geo_region_err_ns');
+            return $this->modx->lexicon('geo_city_err_ns');
         }
 
         if (empty($name)) {
-            $this->modx->error->addField('name', $this->modx->lexicon('geo_region_err_name'));
+            $this->modx->error->addField('name', $this->modx->lexicon('geo_city_err_name'));
         } elseif ($this->modx->getCount($this->classKey, array('name' => $name, 'id:!=' => $id))) {
-            $this->modx->error->addField('name', $this->modx->lexicon('geo_region_err_ae'));
+            $this->modx->error->addField('name', $this->modx->lexicon('geo_city_err_ae'));
         }
 
         return parent::beforeSet();
     }
 }
 
-return 'GeoRegionUpdateProcessor';
+return 'GeoCityUpdateProcessor';

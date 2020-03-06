@@ -1,9 +1,9 @@
 <?php
 
-class GeoItemRemoveProcessor extends modObjectProcessor
+class GeoRegionRemoveProcessor extends modObjectProcessor
 {
-    public $objectType = 'GeoItem';
-    public $classKey = 'GeoItem';
+    public $objectType = 'GeoRegion';
+    public $classKey = 'GeoRegion';
     public $languageTopics = array('geo');
     //public $permission = 'remove';
 
@@ -19,13 +19,13 @@ class GeoItemRemoveProcessor extends modObjectProcessor
 
         $ids = $this->modx->fromJSON($this->getProperty('ids'));
         if (empty($ids)) {
-            return $this->failure($this->modx->lexicon('geo_item_err_ns'));
+            return $this->failure($this->modx->lexicon('geo_region_err_ns'));
         }
 
         foreach ($ids as $id) {
-            /** @var GeoItem $object */
+            /** @var GeoRegion $object */
             if (!$object = $this->modx->getObject($this->classKey, $id)) {
-                return $this->failure($this->modx->lexicon('geo_item_err_nf'));
+                return $this->failure($this->modx->lexicon('geo_region_err_nf'));
             }
 
             $object->remove();
@@ -36,4 +36,4 @@ class GeoItemRemoveProcessor extends modObjectProcessor
 
 }
 
-return 'GeoItemRemoveProcessor';
+return 'GeoRegionRemoveProcessor';
